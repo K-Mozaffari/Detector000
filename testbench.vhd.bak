@@ -24,7 +24,7 @@ port (
 end component;
 ------------ Signal declaration -------------
 signal clk:std_logic:='0';
-signal input_vector:std_logic_vector(16 downto 0):="01010101011000000";
+signal input_vector:std_logic_vector(16 downto 0):="01010001010000000";
 signal input,output:std_logic;
  
 begin 

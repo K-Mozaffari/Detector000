@@ -1,0 +1,17 @@
+/home/kamal/Desktop/udemy/Detector1010.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/kamal/Desktop/udemy/Detector1010.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity detector1010
+-- Compiling architecture bh of detector1010
+
+} {} {}} /home/kamal/Desktop/udemy/Detector000.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/kamal/Desktop/udemy/Detector000.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity detector000
+-- Compiling architecture bh of detector000
+
+} {} {}}
