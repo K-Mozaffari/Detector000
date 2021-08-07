@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity test_detector  is 
- 
+ generic(d:integer:=2);
 end entity;
 
 
@@ -22,9 +22,15 @@ port (
 	input	:in std_logic;
 	output	:out std_logic);
 end component;
+component detector11011   
+port (
+	clk	:in  std_logic;
+	input	:in std_logic;
+	output	:out std_logic);
+end component;
 ------------ Signal declaration -------------
 signal clk:std_logic:='0';
-signal input_vector:std_logic_vector(16 downto 0):="01010101011000000";
+signal input_vector:std_logic_vector(16 downto 0):="10101010110011011";
 signal input,output:std_logic;
  
 begin 
@@ -36,20 +42,28 @@ P_CLK: process
         wait for 100 ps;
     end process P_CLK;
 
-
---gate0: detector000  port map(
---	                        clk	    =>clk,--:in  std_logic;
---	                        input   =>input ,--	:in std_logic;
---	                        output  =>output--	:out std_logic
---                            );
-gate0: detector1010  port map(
+gen1:if d=1 generate 
+gate0: detector000  port map(
+	                        clk	    =>clk,--:in  std_logic;
+	                        input   =>input ,--	:in std_logic;
+	                        output  =>output--	:out std_logic
+                            );
+end generate;
+ gen2:if d=2 generate 
+gate1: detector1010  port map(
+	                        clk	    =>clk,--:in  std_logic;
+	                        input   =>input ,--	:in std_logic;
+	                        output  =>output--	:out std_logic
+                            ); 
+end generate;
+ gen3:if d=3 generate 
+gate2: detector11011  port map(
 	                        clk	    =>clk,--:in  std_logic;
 	                        input   =>input ,--	:in std_logic;
 	                        output  =>output--	:out std_logic
                             ); 
 
-
- 
+ end generate;
 process (clk)
 
         begin 
