@@ -12,42 +12,74 @@ end entity;
 architecture bh of detector000 is 
 
 type states is (idle,s1,s2);
-signal state:states;
+signal Present_state,Next_state:states;
  
 begin 
 
-process (clk)
+P_reg:    process (clk)
 
-begin 
+        begin 
+        if rising_edge(clk) then 
 
-if rising_edge (clk) then 
-		case state is 
-			when idle =>if input ='0' then 
-				     state<=s1;
-				     output<='0';
-				   elsif input='1' then 
-				     state<=idle;
-				     output<='0';					
-				    end if;
-			when s1 =>if input ='0' then 
-				     state<=s2;
-				     output<='0';
-				   elsif input='1' then 
-				     state<=idle;
-				     output<='0';					
-				    end if;
-			when s2 =>if input ='0' then 
-				     state<=idle;
-				     output<='1';
-				   elsif input='1' then 
-				     state<=idle;
-				     output<='0';					
-				    end if;
-			when others =>output<='0';
-				    state<=idle; 
-		end case;
-end if;
-end process;
+        Present_state<=Next_state;
+        end if;
+
+    end process;
+
+
+
+
+
+
+
+P_states:process (input,Present_state)
+
+        begin          
+		        case Present_state is 
+			        when idle =>if input ='0' then 
+				             Next_state<=s1;
+        
+				           elsif input='1' then 
+				             Next_state<=idle;
+				            					
+				            end if;
+			        when s1 =>if input ='0' then 
+				             Next_state<=s2;
+				              
+				           elsif input='1' then 
+				             Next_state<=idle;
+				              					
+				            end if;
+			        when s2 =>if input ='0' then 
+				             Next_state<=idle;
+				              
+				           elsif input='1' then 
+				             Next_state<=idle;
+				              					
+				            end if;
+			        when others => 
+				            Next_state<=idle; 
+		        end case;
+         
+        end process;
+
+P_output: process (Present_state,input)
+        begin
+            case present_state is
+
+                    when idle => output<='0';
+                    when s1 => output<='0';
+                    when s2=>  if input ='0' then 
+				    
+				                 output<='1';
+				               elsif input='1' then 
+	                
+				                 output<='0';					
+				                end if;
+            end case;
+
+        end process;
+
 
 
 
