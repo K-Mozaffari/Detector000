@@ -43,7 +43,7 @@ end component;
 signal clk:std_logic:='0';
 signal input_vector:std_logic_vector(16 downto 0):="10101010110011011";
 signal input,output:std_logic;
-signal rst:std_logic; 
+ 
 begin 
 
 
@@ -82,7 +82,7 @@ gate2: detector_1001
 
 port map (
 clk=> clk,
-rst=> rst,
+rst=> open,
 in1=> input,
 out1=> output
 );
