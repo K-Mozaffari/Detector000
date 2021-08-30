@@ -28,6 +28,17 @@ port (
 	input	:in std_logic;
 	output	:out std_logic);
 end component;
+component detector_1001  
+
+port (
+clk:in std_logic;
+rst:in std_logic;
+in1:in std_logic;
+out1:out std_logic
+);
+
+
+end component;
 ------------ Signal declaration -------------
 signal clk:std_logic:='0';
 signal input_vector:std_logic_vector(16 downto 0):="10101010110011011";
@@ -42,21 +53,21 @@ P_CLK: process
         wait for 100 ps;
     end process P_CLK;
 
-gen1:if d=1 generate 
+detect_000:if d=1 generate 
 gate0: detector000  port map(
 	                        clk	    =>clk,--:in  std_logic;
 	                        input   =>input ,--	:in std_logic;
 	                        output  =>output--	:out std_logic
                             );
 end generate;
- gen2:if d=2 generate 
+ detect_1010:if d=2 generate 
 gate1: detector1010  port map(
 	                        clk	    =>clk,--:in  std_logic;
 	                        input   =>input ,--	:in std_logic;
 	                        output  =>output--	:out std_logic
                             ); 
 end generate;
- gen3:if d=3 generate 
+ detect_11011:if d=3 generate 
 gate2: detector11011  port map(
 	                        clk	    =>clk,--:in  std_logic;
 	                        input   =>input ,--	:in std_logic;
@@ -64,6 +75,21 @@ gate2: detector11011  port map(
                             ); 
 
  end generate;
+
+
+detect_1001:if d=4 generate 
+gate2: detector_1001  
+
+port (
+clk=> clk,
+rst=> open,
+in1=> input,
+out1=> output,
+);
+
+ end generate;
+
+----------------------------------
 process (clk)
 
         begin 
